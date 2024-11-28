@@ -1,0 +1,69 @@
+﻿<Page x:Class="Cour.Pav.View.ItemPageBuyer"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Cour.Pav.View"
+      mc:Ignorable="d" 
+       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ItemPageBuyer">
+
+    <Grid Background="Wheat">
+         <Grid.RowDefinitions>
+     <RowDefinition Height="8*"/>
+     <RowDefinition Height="1*"/>
+ </Grid.RowDefinitions>
+ <ListBox Background="#e0c470" Grid.Row="0" Margin="10,10,10,10" x:Name="AuctionContainer" 
+          ItemsSource="{Binding BuyerList}"
+          SelectedItem="{Binding SelectBuyer}" Grid.ColumnSpan="2">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding EditCommand}"
+                                           CommandParameter="{Binding SelectBuyer}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Удалить" Command="{Binding DeleteCommand}"
+                   CommandParameter="{Binding SelectBuyer}"></MenuItem>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+
+            <ListBox.ItemTemplate>
+         <DataTemplate>
+             <Grid>
+                 <Grid.RowDefinitions>
+                     <RowDefinition/>
+                     <RowDefinition/>
+                     <RowDefinition/>
+                 </Grid.RowDefinitions>
+                 <Grid.ColumnDefinitions>
+                     <ColumnDefinition Width="300"/>
+                     <ColumnDefinition Width="300"/>
+                     <ColumnDefinition Width="300"/>
+                 </Grid.ColumnDefinitions>
+
+
+                 <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=LotNumber}" FontSize="20"  TextAlignment="Center"/>
+                 <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Price}" FontSize="20" TextAlignment="Center"/>
+                 <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Path=Description}" FontSize="20" TextAlignment="Center"/>
+
+
+
+                 
+                 
+             </Grid>
+         </DataTemplate>
+     </ListBox.ItemTemplate>
+ </ListBox>
+ <Grid Grid.Row="1" Grid.ColumnSpan="2">
+     <Grid.ColumnDefinitions>
+         <ColumnDefinition/>
+         <ColumnDefinition/>
+         <ColumnDefinition/>
+     </Grid.ColumnDefinitions>
+    
+ </Grid>
+    </Grid>
+</Page>

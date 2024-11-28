@@ -1,0 +1,22 @@
+﻿<Page x:Class="Cour.Pav.View.AuctionRevenuePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Cour.Pav.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AuctionRevenuePage">
+
+    <Grid Background="Wheat">
+        <!--Делай с помощи DataGrid, меньше работы, а суть таже
+        Если не забудешь, то сделай для юзеров все таблицы DataGrid-->
+        <DataGrid Margin="20" Background="#e0c470" ItemsSource="{Binding AuctionList}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Аукцион" Binding="{Binding AuctionName}" />
+                <DataGridTextColumn Header="Место" Binding="{Binding Location}" />
+                <DataGridTextColumn Header="Общий доход" Binding="{Binding TotalRevenue, StringFormat=C}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

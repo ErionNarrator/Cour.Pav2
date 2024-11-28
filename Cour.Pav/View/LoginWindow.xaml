@@ -1,0 +1,48 @@
+﻿<Window x:Class="Cour.Pav.View.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cour.Pav.View" xmlns:model="clr-namespace:Cour.Pav.Model" d:DataContext="{d:DesignInstance Type=model:Buyer}"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="450" Width="800">
+    <Grid Background="Wheat" Cursor="">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Аукцион PWGood" Grid.Column="1" Grid.Row="1"
+                    VerticalAlignment="Top" HorizontalAlignment="Center"
+                   FontSize="30"/>
+        <TextBlock Text="Введите логин:" Grid.Column="1" Grid.Row="1"
+                   VerticalAlignment="Top" HorizontalAlignment="Left"
+                   FontSize="20" Margin="150,100,0,0"/>
+        <TextBox x:Name="loginBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="151,127,149,0"
+                 Text="{Binding LoginBuyer}"/>
+
+        <TextBlock Text="Введите пароль:" Grid.Column="1" Grid.Row="1"
+                   VerticalAlignment="Top" HorizontalAlignment="Left" 
+                   FontSize="20" Margin="151,173,0,0"/>
+        <PasswordBox x:Name="passwordBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="151,200,149,0"/>
+
+        <Button Content="Войти" Grid.Column="1" Grid.Row="1"
+                VerticalAlignment="Top" Width="200" Margin="201,242,199,0"  
+                Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=passwordBox}" Cursor="Hand"/>
+        <Button Content="Создать продавца" Grid.Column="1" Grid.Row="2"
+                VerticalAlignment="Bottom" Width="200" Margin="100,0,300,54" Grid.RowSpan="2"
+                Command="{Binding AddCommand}"/>
+        <Button Content="Создать покупателя" Grid.Column="1" Grid.Row="2"
+         VerticalAlignment="Bottom" Width="200" Margin="305,0,95,54" Grid.RowSpan="2"
+                Command="{Binding AddCommands}"/>
+        <Button Content="X" Width="40" Command="{Binding CancelCommand}"/>
+
+    </Grid>
+</Window>

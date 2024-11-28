@@ -1,0 +1,119 @@
+﻿<Window x:Class="Cour.Pav.View.AddEditAuction"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cour.Pav.View" xmlns:validation="clr-namespace:Cour.Pav.Validation"
+        mc:Ignorable="d"
+        Title="AddEditAuction" Height="500" Width="450">
+    <Window.Resources>
+        <validation:NameValidationRule x:Key="nameValidation" />
+        <validation:OnlyDigitsValidationRule x:Key="onlyDigitsValidation"/>
+        <validation:NotEmpty x:Key="nameEmpty"/>
+        <validation:SelectionValidationRule x:Key="SelectValidate"/>
+        <Style x:Key="InputControlErrors" TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"    
+              Value="{Binding RelativeSource={x:Static RelativeSource.Self},    
+                              Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ComboBoxControlErrors"  TargetType="{x:Type ComboBox}" >
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" 
+                        Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--Create a template to show if validation fails-->
+        <ControlTemplate x:Key="ErrorTemplate">
+            <DockPanel>
+                <Border BorderBrush="Red" BorderThickness="1" >
+                    <AdornedElementPlaceholder/>
+                </Border>
+                <TextBlock Foreground="Red" FontSize="20" Text="!" />
+            </DockPanel>
+        </ControlTemplate>
+    </Window.Resources>
+    <Grid Background="Wheat">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" VerticalAlignment="Center"
+                   FontSize="15">Название:</TextBlock>
+        <TextBox x:Name="AuctionName" Grid.Row="0"
+                 Grid.Column="1" VerticalAlignment="Center"
+                 Margin="15">
+            <TextBox.Text>
+                <Binding Path="AuctionName" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validation:NameValidationRule ValidatesOnTargetUpdated="True"/>
+                        <validation:NotEmpty ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+
+        <TextBlock Grid.Row="1" VerticalAlignment="Center"
+                   FontSize="15">Дата:</TextBlock>
+        <DatePicker x:Name="Date" Grid.Row="1" VerticalAlignment="Center"
+                    Grid.Column="1" Margin="15"
+                    SelectedDate="{Binding Date,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></DatePicker>
+
+            <TextBlock Grid.Row="2" VerticalAlignment="Center"
+                   FontSize="15">Место:</TextBlock>
+        <TextBox x:Name="Location" Grid.Row="2" VerticalAlignment="Center"
+                 Grid.Column="1" Margin="15">
+            <TextBox.Text>
+                <Binding Path="Location" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validation:NameValidationRule ValidatesOnTargetUpdated="True"/>
+                        <validation:NotEmpty ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBlock Grid.Row="3" VerticalAlignment="Center"
+                   FontSize="15">Специфика:</TextBlock>
+        <TextBox x:Name="Specifications" Grid.Row="3" VerticalAlignment="Center"
+                 Grid.Column="1" Margin="15">
+            <TextBox.Text>
+                <Binding Path="Specifications" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validation:NameValidationRule ValidatesOnTargetUpdated="True"/>
+                        <validation:NotEmpty ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        
+        
+        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Margin="20" Click="Button_Click">Сохранить</Button>
+            <Button Grid.Column="1" Margin="20" Click="Button_Click_1">Отмена</Button>
+        </Grid>
+        
+        
+    </Grid>
+</Window>
